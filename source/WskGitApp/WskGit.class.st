@@ -18,9 +18,9 @@ WskGit class >> newWith: reposPathString [
 ]
 
 { #category : 'accessing' }
-WskGit >> catFileCommit [
+WskGit >> catFileCommit: aHash [
 | starter process readStream execOkay |
-	starter := OsProcessStarter shell: 'git cat-file commit HEAD'.
+	starter := OsProcessStarter shell: 'git cat-file commit ', aHash.
 	starter workingDirectory: self repositoryPath.
 	starter redirectOutputToPipe.
 	process := starter start.
@@ -31,6 +31,12 @@ WskGit >> catFileCommit [
 		readStream := process outputStream upToEnd readStream.
 		readStream contents] 
 		ifFalse:['']
+]
+
+{ #category : 'accessing' }
+WskGit >> catFileHead [
+
+	^ self catFileCommit: 'HEAD'
 ]
 
 { #category : 'accessing' }
