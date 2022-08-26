@@ -53,6 +53,12 @@ WskGit >> executeCommand: aCommandString [
 ]
 
 { #category : 'accessing' }
+WskGit >> push [
+
+	^ self executeCommand: 'git push' 
+]
+
+{ #category : 'accessing' }
 WskGit >> repositoryPath [
 	^ repositoryPath
 ]
