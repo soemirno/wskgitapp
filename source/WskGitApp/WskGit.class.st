@@ -30,6 +30,12 @@ WskGit >> catFileHead [
 ]
 
 { #category : 'accessing' }
+WskGit >> commit: aMessage [
+
+	^ self executeCommand: ('git commit -m "%1"' bindWith: aMessage)  
+]
+
+{ #category : 'accessing' }
 WskGit >> executeCommand: aCommandString [
 	| starter process readStream execOkay commands |
 	commands := aCommandString.
@@ -54,4 +60,10 @@ WskGit >> repositoryPath [
 { #category : 'accessing' }
 WskGit >> repositoryPath: path [
 	repositoryPath := path
+]
+
+{ #category : 'accessing' }
+WskGit >> stageAllChanges [
+
+	^ self executeCommand: 'git add .' 
 ]
