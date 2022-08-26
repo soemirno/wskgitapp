@@ -19,24 +19,31 @@ WskGit class >> newWith: reposPathString [
 
 { #category : 'accessing' }
 WskGit >> catFileCommit: aHash [
-| starter process readStream execOkay |
-	starter := OsProcessStarter shell: 'git cat-file commit ', aHash.
-	starter workingDirectory: self repositoryPath.
-	starter redirectOutputToPipe.
-	process := starter start.
-		
-	process waitForCompletion.
-	execOkay := process exitCode isZero.
-	^execOkay ifTrue:[
-		readStream := process outputStream upToEnd readStream.
-		readStream contents] 
-		ifFalse:['']
+
+	^ self executeCommand: 'git cat-file commit ' , aHash
 ]
 
 { #category : 'accessing' }
 WskGit >> catFileHead [
 
 	^ self catFileCommit: 'HEAD'
+]
+
+{ #category : 'accessing' }
+WskGit >> executeCommand: aCommandString [
+	| starter process readStream execOkay commands |
+	commands := aCommandString.
+	starter := OsProcessStarter shell: commands.
+	starter workingDirectory: self repositoryPath.
+	starter redirectOutputToPipe.
+	process := starter start.
+	process waitForCompletion.
+	execOkay := process exitCode isZero.
+	^execOkay 
+		ifTrue: 
+			[readStream := process outputStream upToEnd readStream.
+			readStream contents]
+		ifFalse: ['']
 ]
 
 { #category : 'accessing' }
