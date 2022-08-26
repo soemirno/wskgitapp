@@ -11,5 +11,24 @@ A VA Smalltalk wrapper for git commands.
 # Installing
 Clone this reposistory locally and use tonel to load the applications.
 
-# ToDo
+# Usage
+Sample workspace script for pushing changes from the image to the remote repository.
 
+```smalltalk
+commitMessage := 'feat: push something'.
+localClone := 'C:\xxx\repositories\WskGitApp'.
+
+TonelWriter new
+  applications:  (#('WskGitApp' 'WskGitTestApp') collect:[:each|  Smalltalk classAt: each asSymbol   ]);
+  writeProjectInto: (CfsPath named: localClone. 
+
+git := WskGit newWith: localClone.
+output := git stageAllChanges.
+Transcript cr; show: output.
+
+output := git commit: commitMessage.
+Transcript cr; show: output.
+
+output := git push.
+Transcript cr; show: output
+```
