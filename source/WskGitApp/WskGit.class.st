@@ -32,7 +32,7 @@ WskGit >> catFileHead [
 { #category : 'accessing' }
 WskGit >> commit: aMessage [
 
-	^ self executeCommand: ('git commit -m "%1"' bindWith: aMessage)  
+	^ self executeCommand: ('git commit -m ''%1''' bindWith: aMessage)  
 ]
 
 { #category : 'accessing' }
