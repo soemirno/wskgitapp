@@ -32,7 +32,7 @@ WskGit >> catFileHead [
 { #category : 'accessing' }
 WskGit >> commit: aMessage [
 
-	^ self executeCommand: ('git commit -m ''%1''' bindWith: aMessage)  
+	^ self executeCommand: (OrderedCollection with:'git' with: 'commit' with:  ( '-m''%1''' bindWith: aMessage))  
 ]
 
 { #category : 'accessing' }
@@ -49,7 +49,7 @@ WskGit >> executeCommand: aCommandString [
 		ifTrue: 
 			[readStream := process outputStream upToEnd readStream.
 			readStream contents]
-		ifFalse: ['']
+		ifFalse: ['error']
 ]
 
 { #category : 'accessing' }
