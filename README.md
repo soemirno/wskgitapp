@@ -9,7 +9,7 @@ A VA Smalltalk wrapper for git commands.
 * To have a single repository for the whole project including both Smalltalk and non-Smalltalk resources.
 
 # Installing
-Clone this reposistory locally and use tonel to load the applications.
+Clone this repository locally and use tonel to load the applications.
 
 # Usage
 Sample workspace script for pushing changes from the image to the remote repository.
