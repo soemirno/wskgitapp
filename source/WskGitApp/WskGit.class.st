@@ -52,7 +52,7 @@ WskGit >> executeCommand: aCommandString [
 		ifFalse: ['error']
 ]
 
-{ #category : 'accessing' }
+{ #category : 'running' }
 WskGit >> push [
 
 	^ self executeCommand: 'git push' 
