@@ -38,7 +38,7 @@ add header
 		copyWithout: Character cr
 ]
 
-{ #category : 'Not categorized' }
+{ #category : 'intialize-release' }
 WskGitTest >> setUp [
 		
 	| stream |
@@ -55,7 +55,7 @@ WskGitTest >> setUp [
 	
 ]
 
-{ #category : 'Not categorized' }
+{ #category : 'intialize-release' }
 WskGitTest >> tearDown [
 	(CfsPath named: tempFolder) deleteAll
 	
