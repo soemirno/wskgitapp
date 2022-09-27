@@ -76,10 +76,3 @@ WskGitTest >> testCommitMessage [
 	firstLine :=  (ReadStream on: output) nextLine.
 	self assert:  ( firstLine endsWithSubCollection: 'a message') .
 ]
-
-{ #category : 'Tests' }
-WskGitTest >> testRepositoryPath [
-	| git |
-	git := WskGit newWith: 'C:\temp\test_repos\'.
-	self assert: (git repositoryPath) originalName equals: 'C:\temp\test_repos\'
-]
