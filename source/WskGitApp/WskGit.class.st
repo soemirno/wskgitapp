@@ -32,7 +32,7 @@ WskGit >> catFileHead [
 { #category : 'accessing' }
 WskGit >> commit: aMessage [
 
-	^ self executeCommand: (OrderedCollection with:'git' with: 'commit' with:  ( '-m''%1''' bindWith: aMessage))  
+	^ self executeCommand: (OrderedCollection with:'git' with: 'commit' with:  ( '-m%1' bindWith: aMessage))  
 ]
 
 { #category : 'accessing' }
@@ -49,10 +49,11 @@ WskGit >> executeCommand: aCommandString [
 		ifTrue: 
 			[readStream := process outputStream upToEnd readStream.
 			readStream contents]
-		ifFalse: ['error']
+		ifFalse: [ readStream := process outputStream upToEnd readStream.
+			readStream contents]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'running' }
 WskGit >> push [
 
 	^ self executeCommand: 'git push' 
@@ -72,4 +73,10 @@ WskGit >> repositoryPath: path [
 WskGit >> stageAllChanges [
 
 	^ self executeCommand: 'git add .' 
+]
+
+{ #category : 'running' }
+WskGit >> status [
+
+	^ self executeCommand: 'git status' 
 ]
